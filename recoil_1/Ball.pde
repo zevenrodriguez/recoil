@@ -6,14 +6,13 @@ class Ball {
   PImage on;
   PImage off;
   int imageSize = 150;
-  int totalTime = 1000;
+  int totalTime = 2000;
   int savedTime = 0;
-  int counter = 0;
-  
-  
-  
-  
-  
+  //int counter = 0;
+
+  boolean displaying = true;
+
+
   Ball(int _xpos, int _ypos, int _ballSize, PImage _on, PImage _off) {
     xpos = _xpos;
     ypos = _ypos;
@@ -25,34 +24,22 @@ class Ball {
 
 
 
-  void display(int cTrigger) {
-    if (cTrigger >=1 && cTrigger <=4) {
-      image(on, xpos, ypos, 150, 150);
-    }
-    else if (cTrigger >=5 && cTrigger <=8) {
-      image(off, xpos, ypos, 150, 150);
-    }
+  void display() {
+
+    
+    image(on, xpos, ypos, ballSize, ballSize);
+    
   }
 
-  void move() {
-    while (counter < 10) {
-
-      int PassedTime = millis() - SavedTime;
-
-      if (PassedTime > TotalTime) {
-
-        println("doing something");
-        SavedTime = millis();
-        counter++;
-      }
-      display(1);
-    }
-    if (counter >=10){
-      
-      counter = 0;
-      display(5);
-      
-      
-    }
+  void move(int counter) {
+    pushMatrix();
+    translate(0,0,counter);
+    display();
+    popMatrix();
+  
   }
+  
+  
+  
+}
 
